@@ -9,18 +9,18 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddOpenApi();
 
 builder.Services.AddSingleton<UserRepository>();
+builder.Services.AddSingleton<CategoryRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwagger();              // JSON endpoint
-    app.UseSwaggerUI(c =>          // Swagger UI
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-        c.RoutePrefix = string.Empty; // serve at root: http://localhost:5000/
+        c.RoutePrefix = string.Empty;
     });
 }
 

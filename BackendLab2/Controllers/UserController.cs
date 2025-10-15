@@ -52,7 +52,7 @@ public class UserController : ControllerBase
         try
         {
             await _userRepository.CreateUser(user);
-            return NoContent();
+            return Created();
         }
         catch (Exception e)
         {
