@@ -1,6 +1,5 @@
 ﻿using BackendLab2.Models;
 using BackendLab2.Repositories;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendLab2.Controllers;

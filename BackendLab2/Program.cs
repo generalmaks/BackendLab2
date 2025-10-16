@@ -10,6 +10,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddSingleton<UserRepository>();
 builder.Services.AddSingleton<CategoryRepository>();
+builder.Services.AddSingleton<RecordRepository>();
 
 var app = builder.Build();
 
