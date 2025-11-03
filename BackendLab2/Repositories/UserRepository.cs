@@ -18,10 +18,13 @@ public class UserRepository
         return Task.CompletedTask;
     }
 
-    public Task CreateUser(User user)
+    public Task<int> CreateUser(User user)
     {
+        var userId = DatabaseSubstitute.Users.Count > 0
+            ? DatabaseSubstitute.Users.Max(u => u.Id) + 1
+            : 1;
         DatabaseSubstitute.Users.Add(user);
-        return Task.CompletedTask;
+        return Task.FromResult(userId);
     }
 
     public Task<List<User>> GetAllUsers()

@@ -11,10 +11,12 @@ public class CategoryRepository
         return Task.FromResult(DatabaseSubstitute.Categories);
     }
 
-    public Task CreateNewCategory([FromBody] Category category)
+    public Task<int> CreateNewCategory([FromBody] Category category)
     {
+        var categoryId = DatabaseSubstitute.Categories.Count > 0 ?
+            DatabaseSubstitute.Categories.Max(c => c.Id) + 1 : 1;
         DatabaseSubstitute.Categories.Add(category);
-        return Task.CompletedTask;
+        return Task.FromResult(categoryId);
     }
 
     public Task DeleteCategory(int id)

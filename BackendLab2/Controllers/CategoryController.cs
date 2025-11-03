@@ -13,6 +13,7 @@ public class CategoryController : ControllerBase
     {
         _repository = repository;
     }
+
     [HttpGet("/category")]
     public async Task<ActionResult<List<Category>>> ListCategory()
     {
@@ -32,8 +33,11 @@ public class CategoryController : ControllerBase
     {
         try
         {
-            await _repository.CreateNewCategory(category);
-            return Created();
+            var categoryId = await _repository.CreateNewCategory(category);
+            return Created(
+                $"/category/{categoryId}",
+                new { id = categoryId }
+            );
         }
         catch (Exception e)
         {

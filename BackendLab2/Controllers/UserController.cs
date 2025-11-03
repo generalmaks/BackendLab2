@@ -51,8 +51,11 @@ public class UserController : ControllerBase
     {
         try
         {
-            await _userRepository.CreateUser(user);
-            return Created();
+            var createdUserId = await _userRepository.CreateUser(user);
+            return Created(
+                $"/user/{createdUserId}",           // Location header (optional but recommended)
+                new { id = createdUserId }          // Response body
+            );
         }
         catch (Exception e)
         {
